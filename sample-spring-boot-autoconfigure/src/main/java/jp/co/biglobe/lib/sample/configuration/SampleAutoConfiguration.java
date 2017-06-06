@@ -1,11 +1,14 @@
 package jp.co.biglobe.lib.sample.configuration;
 
 
-import jp.co.biglobe.lib.sample.component.GreetingImpl;
+import jp.co.biglobe.lib.sample.component.en.GreetingImpl;
+import jp.co.biglobe.lib.sample.component.jp.JpGreetingImpl;
 import jp.co.biglobe.lib.sample.plugins.Greeting;
 import jp.co.biglobe.lib.sample.properties.SampleProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,11 +22,33 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties({SampleProperties.class}) // sampleプロパティの有効化
 public class SampleAutoConfiguration {
 
-    @Autowired
-    SampleProperties  sampleProperties;
+    /**
+     * application.yml で言語（sample.lang）によって切替えるサンプル
+     */
+    @Configuration
+    @ConditionalOnProperty(prefix = "sample", name = "lang", havingValue = "jp")
+    public static class JpGreetingConfiguration {
 
-    @Bean
-    public Greeting greeting() {
-        return new GreetingImpl(sampleProperties.getName());
+        @Autowired
+        SampleProperties  sampleProperties;
+
+        @Bean
+        public Greeting greeting() {
+            return new JpGreetingImpl(sampleProperties.getName());
+        }
+    }
+
+    @Configuration
+    @AutoConfigureBefore(JpGreetingConfiguration.class)
+    @ConditionalOnMissingBean(Greeting.class)
+    public static class DefaultGreetingConfiguration {
+
+        @Autowired
+        SampleProperties  sampleProperties;
+
+        @Bean
+        public Greeting greeting() {
+            return new GreetingImpl(sampleProperties.getName());
+        }
     }
 }

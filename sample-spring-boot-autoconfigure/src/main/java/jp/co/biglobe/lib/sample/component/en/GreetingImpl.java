@@ -1,4 +1,4 @@
-package jp.co.biglobe.lib.sample.component;
+package jp.co.biglobe.lib.sample.component.en;
 
 import jp.co.biglobe.lib.sample.plugins.Greeting;
 import lombok.Data;
@@ -10,6 +10,6 @@ public class GreetingImpl implements Greeting {
 
     @Override
     public String whatYourName() {
-        return name;
+        return "Hello, " + name;
     }
 }

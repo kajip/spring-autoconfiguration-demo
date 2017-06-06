@@ -2,6 +2,8 @@
 
 Spring BootのAutoConfiguration機能でプロジェクト側にXML等を作らなくても勝手に初期化するライブラリのサンプル
 
+参考：http://docs.spring.io/spring-boot/docs/1.4.5.RELEASE/reference/html/boot-features-developing-auto-configuration.html
+
 ## サブプロジェクト
 
 * sample-spring-boot-autoconfigure ... AutoConfigurationされるライブラリ本体

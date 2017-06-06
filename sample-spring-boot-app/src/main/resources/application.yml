@@ -1,6 +1,7 @@
 ---
 sample:
   name: 鈴木ほげ
+  lang: en
 sample-app:
   list:
     - ほげ
