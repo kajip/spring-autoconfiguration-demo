@@ -1,0 +1,7 @@
+version = "1.0"
+group = "jp.co.biglobe"
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.1'
+}
+

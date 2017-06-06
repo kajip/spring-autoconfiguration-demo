@@ -1,0 +1,9 @@
+*.db
+.DS_Store
+build/
+classes/
+target/
+.settings/
+.idea/
+*.iml
+.gradle

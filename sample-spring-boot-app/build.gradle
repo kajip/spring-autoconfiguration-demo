@@ -1,0 +1,24 @@
+plugins {
+    id 'org.springframework.boot' version '1.4.5.RELEASE'
+}
+
+apply plugin: 'groovy'
+
+ext {
+    groovyVersion = '2.4.7'
+    springBootVersion = '1.4.5.RELEASE'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+
+    compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    compile project(':sample-spring-boot-autoconfigure')
+//    compile project(':sample-spring-boot-starter')
+
+    compileOnly "org.projectlombok:lombok"
+}

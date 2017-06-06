@@ -1,0 +1,20 @@
+apply plugin: 'groovy'
+
+ext {
+    groovyVersion = '2.4.7'
+
+    springBootVersion = '1.4.5.RELEASE'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+
+    compile "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
+
+    compileOnly "org.projectlombok:lombok:1.16.14"
+}
